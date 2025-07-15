@@ -1,13 +1,88 @@
 import React from 'react'
 import {ModeToggle} from "@/components/ModeToggle";
 import Image from "next/image";
+import {
+    Drawer,
+    DrawerClose,
+    DrawerContent,
+    DrawerDescription,
+    DrawerFooter,
+    DrawerHeader,
+    DrawerTitle,
+    DrawerTrigger,
+} from "@/components/ui/drawer"
+import {Button} from "@/components/ui/button";
+import { AlignJustify } from 'lucide-react';
+import { X } from 'lucide-react';
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+import PracticalExperience from "@/components/Forms/practical-experience";
+import Projects from "@/components/Forms/projects";
+import EducationalExperience from "@/components/Forms/educational-experience";
+import GeneralInformation from "@/components/Forms/GeneralInformation";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+
+
 
 const Navbar = () => {
   return (
-    <div className={'bg-sidebar-accent flex justify-between items-center px-8 py-3 border-b-2'}>
+    <div className={'bg-sidebar-accent flex justify-between lg:justify-between items-center px-4 py-3 lg:px-8 lg:py-3 border-b-2'}>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      <h1 className={'text-2xl flex items-center gap-4'}><Image className={'hidden dark:block'} src={"/odin-lined.png"} width={'30'} height={'10'} alt={'odin'}/>The Odin Project | CV Application</h1>
-        <ModeToggle/>
+        <h1 className={'text-md lg:text-2xl flex items-center gap-4 font-mono'}>PaperTrail</h1>
+        <Drawer>
+            <DrawerTrigger className={"block xl:hidden"}><AlignJustify/></DrawerTrigger>
+            <DrawerContent>
+                <div className={'px-4 py-2 overflow-scroll'}>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger>General</AccordionTrigger>
+                            <AccordionContent className={'w-full'}>
+                                <GeneralInformation/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger>Education</AccordionTrigger>
+                            <AccordionContent>
+                                <EducationalExperience/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger>Projects</AccordionTrigger>
+                            <AccordionContent>
+                                <Projects/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger>Experience</AccordionTrigger>
+                            <AccordionContent>
+                                <PracticalExperience/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                </div>
+                <DrawerFooter className={'flex flex-col items-center justify-between'}>
+                    <DrawerTitle className={'flex items-center gap-4'}><Image className={'hidden dark:block'} src={"/odin-lined.png"} width={'30'} height={'10'} alt={'odin'}/>The Odin Project | CV Application</DrawerTitle>
+                    <DrawerDescription>Made with ❤️ by <span className={'font-dt89'}>DT89</span></DrawerDescription>
+                    <DrawerClose className={'flex gap-2'}>
+                        <Button variant="outline"><X/></Button>
+                        <ModeToggle />
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+        <span className={'hidden xl:flex'}>
+            <ModeToggle />
+        </span>
     </div>
   )
 }

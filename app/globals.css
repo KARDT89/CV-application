@@ -8,6 +8,12 @@
   }
 }
 
+@font-face {
+  font-family: 'dt89';
+  src: url('../public/Slope_Opera.otf');
+  font-weight: normal;
+  font-style: normal;
+}
 
 
 @layer base {
