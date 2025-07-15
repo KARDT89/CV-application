@@ -27,7 +27,40 @@ export default function Home() {
 
             </div>
 
-            <div className="flex-1 bg-secondary">test</div>
+            <div className="flex-1 xl:hidden bg-secondary px-4 ">
+                <Accordion type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger>General</AccordionTrigger>
+                            <AccordionContent className={'w-full'}>
+                                <GeneralInformation/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-2">
+                            <AccordionTrigger>Education</AccordionTrigger>
+                            <AccordionContent>
+                                <EducationalExperience/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-3">
+                            <AccordionTrigger>Projects</AccordionTrigger>
+                            <AccordionContent>
+                                <Projects/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion type="single" collapsible>
+                        <AccordionItem value="item-4">
+                            <AccordionTrigger>Experience</AccordionTrigger>
+                            <AccordionContent>
+                                <PracticalExperience/>
+                            </AccordionContent>
+                        </AccordionItem>
+                    </Accordion>
+            </div>
         </div>
     );
 }

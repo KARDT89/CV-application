@@ -33,42 +33,11 @@ const Navbar = () => {
     <div className={'bg-sidebar-accent flex justify-between lg:justify-between items-center px-4 py-3 lg:px-8 lg:py-3 border-b-2'}>
         {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <h1 className={'text-md lg:text-2xl flex items-center gap-4 font-mono'}>PaperTrail</h1>
-        <Drawer>
+        <Drawer >
             <DrawerTrigger className={"block xl:hidden"}><AlignJustify/></DrawerTrigger>
             <DrawerContent>
                 <div className={'px-4 py-2 overflow-scroll'}>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>General</AccordionTrigger>
-                            <AccordionContent className={'w-full'}>
-                                <GeneralInformation/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Education</AccordionTrigger>
-                            <AccordionContent>
-                                <EducationalExperience/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Projects</AccordionTrigger>
-                            <AccordionContent>
-                                <Projects/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-4">
-                            <AccordionTrigger>Experience</AccordionTrigger>
-                            <AccordionContent>
-                                <PracticalExperience/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
+                    <h1>Cv Here</h1>
                 </div>
                 <DrawerFooter className={'flex flex-col items-center justify-between'}>
                     <DrawerTitle className={'flex items-center gap-4'}><Image className={'hidden dark:block'} src={"/odin-lined.png"} width={'30'} height={'10'} alt={'odin'}/>The Odin Project | CV Application</DrawerTitle>
@@ -80,9 +49,10 @@ const Navbar = () => {
                 </DrawerFooter>
             </DrawerContent>
         </Drawer>
-        <span className={'hidden xl:flex'}>
+        
+        <div className={'hidden xl:flex'}>
             <ModeToggle />
-        </span>
+        </div>
     </div>
   )
 }
