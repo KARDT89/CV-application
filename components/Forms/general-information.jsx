@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -46,13 +45,13 @@ const GeneralInformation = ({ data, setData }) => {
         }
       />
       <Label htmlFor="description" className="text-card-foreground">
-              About
-            </Label>
-            <Textarea
-              className={'border-foreground/20'}
-              value={data.about}
-              onChange={(e) => setData({ ...data, about: e.target.value })}
-            />
+        About
+      </Label>
+      <Textarea
+        className={'border-foreground/20'}
+        value={data.about}
+        onChange={(e) => setData({ ...data, about: e.target.value })}
+      />
     </form>
   );
 };

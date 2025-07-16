@@ -4,9 +4,14 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar22 } from '@/components/ui/date-picker';
+import { Trash2 } from 'lucide-react';
 
-const PracticalExperience = ({ data, setData }) => {
-  console.log(data);
+const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
+  const updateField = (id, field, value) => {
+    setData(
+      data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
+    );
+  };
 
   return (
     <form
@@ -19,35 +24,43 @@ const PracticalExperience = ({ data, setData }) => {
       <Input
         name="name"
         type="text"
-        onChange={(e) => setData({ ...data, name: e.target.value })}
+        value={exp.name}
+        onChange={(e) => updateField(exp.id, 'name', e.target.value)}
       />
       <Label htmlFor="email" className="text-card-foreground">
         Position Title
       </Label>
       <Input
-        name="email"
-        type="email"
-        onChange={(e) => setData({ ...data, position: e.target.value })}
+        name="position"
+        type="text"
+        value={exp.position}
+        onChange={(e) => updateField(exp.id, 'position', e.target.value)}
       />
       <Label htmlFor="description" className="text-card-foreground">
         Description
       </Label>
       <Textarea
         className={'border-foreground/20'}
-        onChange={(e) => setData({ ...data, description: e.target.value })}
+        value={exp.description}
+        onChange={(e) => updateField(exp.id, 'description', e.target.value)}
       />
       <div className={'flex justify-between'}>
         <Calendar22
           label={'From'}
-          onChange={(e) => setData({ ...data, from: e.getUTCFullYear() })}
+          value={exp.from}
+          onChange={(e) => updateField(exp.id, 'from', e.getUTCFullYear())}
         />
         <Calendar22
           label={'To'}
-          onChange={(e) => setData({ ...data, to: e.getUTCFullYear() })}
+          value={exp.to}
+          onChange={(e) => updateField(exp.id, 'to', e.getUTCFullYear())}
         />
       </div>
       <span className="pt-4">
-        <Button type="submit">Add</Button>
+        <Button variant={'ghost'} onClick={() => handleDelete(exp.id)}>
+          Delete
+          <Trash2 />
+        </Button>
       </span>
     </form>
   );
