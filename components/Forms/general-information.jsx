@@ -1,25 +1,14 @@
-'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
+import { Textarea } from '../ui/textarea';
 
-const GeneralInformation = () => {
-  let [generalData, setGeneralData] = useState({
-    name: '',
-    email: '',
-    phoneNumber: '',
-  });
-  let [data, setData] = useState([]);
-  function handleSubmit(e) {
-    e.preventDefault();
-  }
+const GeneralInformation = ({ data, setData }) => {
   return (
     <form
       method="post"
       className="flex flex-col bg-card max-w-sm p-6 gap-3 border border-foreground/20 rounded-l"
-      onSubmit={handleSubmit}
     >
       <Label htmlFor="name" className="text-card-foreground">
         Name
@@ -28,9 +17,8 @@ const GeneralInformation = () => {
         id="name"
         name="name"
         type="text"
-        onChange={(e) =>
-          setGeneralData({ ...generalData, name: e.target.value })
-        }
+        onChange={(e) => setData({ ...data, name: e.target.value })}
+        value={data.name}
       />
       <Label htmlFor="email" className="text-card-foreground">
         Email
@@ -39,9 +27,8 @@ const GeneralInformation = () => {
         id="email"
         name="email"
         type="email"
-        onChange={(e) =>
-          setGeneralData({ ...generalData, email: e.target.value })
-        }
+        value={data.email}
+        onChange={(e) => setData({ ...data, email: e.target.value })}
       />
       <Label htmlFor="phone" className="text-card-foreground">
         Phone Number
@@ -50,16 +37,22 @@ const GeneralInformation = () => {
         id="phone"
         name="phone"
         type="number"
+        value={data.phoneNumber}
         onChange={(e) =>
-          setGeneralData({
-            ...generalData,
+          setData({
+            ...data,
             phoneNumber: e.target.value,
           })
         }
       />
-      <span className="pt-4">
-        <Button type="submit">Submit</Button>
-      </span>
+      <Label htmlFor="description" className="text-card-foreground">
+              About
+            </Label>
+            <Textarea
+              className={'border-foreground/20'}
+              value={data.about}
+              onChange={(e) => setData({ ...data, about: e.target.value })}
+            />
     </form>
   );
 };

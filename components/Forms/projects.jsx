@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 
-const Projects = () => {
+const Projects = ({ data, setData }) => {
   return (
     <form
       action=""
@@ -13,19 +13,37 @@ const Projects = () => {
       <Label htmlFor="name" className="text-card-foreground">
         Name
       </Label>
-      <Input name="name" type="text" />
+      <Input
+        name="name"
+        type="text"
+        onChange={(e) => setData({ ...data, name: e.target.value })}
+      />
       <Label htmlFor="description" className="text-card-foreground">
         Description
       </Label>
-      <Textarea className={'border-foreground/20'} />
-      <Label htmlFor="email" className="text-card-foreground">
+      <Textarea
+        name="description"
+        className={'border-foreground/20'}
+        onChange={(e) =>
+          setProjectData({ ...projectData, description: e.target.value })
+        }
+      />
+      <Label htmlFor="live" className="text-card-foreground">
         Live Link
       </Label>
-      <Input name="live" type="text" />
-      <Label htmlFor="phone" className="text-card-foreground">
+      <Input
+        name="live"
+        type="text"
+        onChange={(e) => setData({ ...data, live: e.target.value })}
+      />
+      <Label htmlFor="github" className="text-card-foreground">
         Github Link
       </Label>
-      <Input name="github" type="text" />
+      <Input
+        name="github"
+        type="text"
+        onChange={(e) => setData({ ...data, github: e.target.value })}
+      />
 
       <span className="pt-4">
         <Button type="submit">Add</Button>

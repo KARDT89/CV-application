@@ -12,7 +12,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 
-export function Calendar22({ label }) {
+export function Calendar22({ label, onChange }) {
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState(undefined);
 
@@ -39,6 +39,7 @@ export function Calendar22({ label }) {
             captionLayout="dropdown"
             onSelect={(date) => {
               setDate(date);
+              onChange(date);
               setOpen(false);
             }}
           />

@@ -1,4 +1,6 @@
-import GeneralInformation from '../components/Forms/GeneralInformation';
+'use client';
+
+import GeneralInformation from '../components/Forms/general-information';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 import EducationalExperience from '@/components/Forms/educational-experience';
@@ -10,9 +12,40 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React from 'react';
+import React, { useState } from 'react';
+import Cv from "@/components/preview/cv";
 
 export default function Home() {
+
+  let [generalData, setGeneralData] = useState({
+        name: "Tamal Sarkar",
+        email: "tamalsarkartwoooo@gmail.com",
+        phoneNumber: 123456789,
+        about: "test about",
+    });
+
+  let [educationData, setEducationData] = useState({
+    school: '',
+    title: '',
+    from: '',
+    to: '',
+  });
+
+  let [projectData, setProjectData] = useState({
+    name: '',
+    description: '',
+    live: '',
+    github: '',
+  });
+
+  let [experienceData, setExperienceData] = useState({
+    name: '',
+    position: '',
+    description: '',
+    from: '',
+    to: '',
+  });
+
   return (
     <div className="flex min-h-screen">
       <div className="hidden xl:flex xl:flex-col min-w-[300px] border-r-2 px-4 py-2">
@@ -24,16 +57,22 @@ export default function Home() {
             <TabsTrigger value="experience">Experience</TabsTrigger>
           </TabsList>
           <TabsContent value="general">
-            <GeneralInformation />
+            <GeneralInformation data={generalData} setData={setGeneralData} />
           </TabsContent>
           <TabsContent value="education">
-            <EducationalExperience />
+            <EducationalExperience
+              data={educationData}
+              setData={setEducationData}
+            />
           </TabsContent>
           <TabsContent value="projects">
-            <Projects />
+            <Projects data={projectData} setData={setProjectData} />
           </TabsContent>
           <TabsContent value="experience">
-            <PracticalExperience />
+            <PracticalExperience
+              data={experienceData}
+              setData={setExperienceData}
+            />
           </TabsContent>
         </Tabs>
       </div>
@@ -43,7 +82,7 @@ export default function Home() {
           <AccordionItem value="item-1">
             <AccordionTrigger>General</AccordionTrigger>
             <AccordionContent className={'w-full'}>
-              <GeneralInformation />
+              <GeneralInformation data={generalData} setData={setGeneralData}/>
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -51,7 +90,10 @@ export default function Home() {
           <AccordionItem value="item-2">
             <AccordionTrigger>Education</AccordionTrigger>
             <AccordionContent>
-              <EducationalExperience />
+              <EducationalExperience
+                data={educationData}
+                setData={setEducationData}
+              />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -59,7 +101,7 @@ export default function Home() {
           <AccordionItem value="item-3">
             <AccordionTrigger>Projects</AccordionTrigger>
             <AccordionContent>
-              <Projects />
+              <Projects data={projectData} setData={setProjectData} />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
@@ -67,11 +109,18 @@ export default function Home() {
           <AccordionItem value="item-4">
             <AccordionTrigger>Experience</AccordionTrigger>
             <AccordionContent>
-              <PracticalExperience />
+              <PracticalExperience
+                data={experienceData}
+                setData={setExperienceData}
+              />
             </AccordionContent>
           </AccordionItem>
         </Accordion>
       </div>
+      <div className={'hidden xl:flex xl:flex-1 xl:items-center xl:justify-center'}>
+        <Cv generalData={generalData}/>
+      </div>
     </div>
+
   );
 }

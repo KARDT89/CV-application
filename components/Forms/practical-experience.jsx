@@ -5,7 +5,9 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar22 } from '@/components/ui/date-picker';
 
-const PracticalExperience = () => {
+const PracticalExperience = ({ data, setData }) => {
+  console.log(data);
+
   return (
     <form
       action=""
@@ -14,18 +16,35 @@ const PracticalExperience = () => {
       <Label htmlFor="name" className="text-card-foreground">
         Company Name
       </Label>
-      <Input name="name" type="text" />
+      <Input
+        name="name"
+        type="text"
+        onChange={(e) => setData({ ...data, name: e.target.value })}
+      />
       <Label htmlFor="email" className="text-card-foreground">
         Position Title
       </Label>
-      <Input name="email" type="email" />
+      <Input
+        name="email"
+        type="email"
+        onChange={(e) => setData({ ...data, position: e.target.value })}
+      />
       <Label htmlFor="description" className="text-card-foreground">
         Description
       </Label>
-      <Textarea className={'border-foreground/20'} />
+      <Textarea
+        className={'border-foreground/20'}
+        onChange={(e) => setData({ ...data, description: e.target.value })}
+      />
       <div className={'flex justify-between'}>
-        <Calendar22 label={'From'} />
-        <Calendar22 label={'To'} />
+        <Calendar22
+          label={'From'}
+          onChange={(e) => setData({ ...data, from: e.getUTCFullYear() })}
+        />
+        <Calendar22
+          label={'To'}
+          onChange={(e) => setData({ ...data, to: e.getUTCFullYear() })}
+        />
       </div>
       <span className="pt-4">
         <Button type="submit">Add</Button>
@@ -35,3 +54,9 @@ const PracticalExperience = () => {
 };
 
 export default PracticalExperience;
+
+function covertDate(date) {
+  let newDate = date.split(' ');
+  let result = newDate[1] + newDate[3];
+  return result;
+}
