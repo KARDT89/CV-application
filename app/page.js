@@ -1,66 +1,77 @@
-import GeneralInformation from "../components/Forms/GeneralInformation";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import GeneralInformation from '../components/Forms/GeneralInformation';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
-import EducationalExperience from "@/components/Forms/educational-experience";
-import PracticalExperience from "@/components/Forms/practical-experience";
-import Projects from "@/components/Forms/projects";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
-import React from "react";
+import EducationalExperience from '@/components/Forms/educational-experience';
+import PracticalExperience from '@/components/Forms/practical-experience';
+import Projects from '@/components/Forms/projects';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
+import React from 'react';
 
 export default function Home() {
-    return (
-        <div className="flex min-h-screen">
-            <div className="hidden xl:flex xl:flex-col min-w-[300px] border-r-2 px-4 py-2">
-                <Tabs defaultValue="account" className="w-full">
-                    <TabsList className={'flex justify-between'}>
-                        <TabsTrigger value="general">General</TabsTrigger>
-                        <TabsTrigger value="education">Education</TabsTrigger>
-                        <TabsTrigger value="projects">Projects</TabsTrigger>
-                        <TabsTrigger value="experience">Experience</TabsTrigger>
+  return (
+    <div className="flex min-h-screen">
+      <div className="hidden xl:flex xl:flex-col min-w-[300px] border-r-2 px-4 py-2">
+        <Tabs defaultValue="account" className="w-full">
+          <TabsList className={'flex justify-between'}>
+            <TabsTrigger value="general">General</TabsTrigger>
+            <TabsTrigger value="education">Education</TabsTrigger>
+            <TabsTrigger value="projects">Projects</TabsTrigger>
+            <TabsTrigger value="experience">Experience</TabsTrigger>
+          </TabsList>
+          <TabsContent value="general">
+            <GeneralInformation />
+          </TabsContent>
+          <TabsContent value="education">
+            <EducationalExperience />
+          </TabsContent>
+          <TabsContent value="projects">
+            <Projects />
+          </TabsContent>
+          <TabsContent value="experience">
+            <PracticalExperience />
+          </TabsContent>
+        </Tabs>
+      </div>
 
-                    </TabsList>
-                    <TabsContent value="general"><GeneralInformation/></TabsContent>
-                    <TabsContent value="education"><EducationalExperience/></TabsContent>
-                    <TabsContent value="projects"><Projects/></TabsContent>
-                    <TabsContent value="experience"><PracticalExperience/></TabsContent>
-                </Tabs>
-
-            </div>
-
-            <div className="flex-1 xl:hidden bg-secondary px-4 ">
-                <Accordion type="single" collapsible>
-                        <AccordionItem value="item-1">
-                            <AccordionTrigger>General</AccordionTrigger>
-                            <AccordionContent className={'w-full'}>
-                                <GeneralInformation/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-2">
-                            <AccordionTrigger>Education</AccordionTrigger>
-                            <AccordionContent>
-                                <EducationalExperience/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-3">
-                            <AccordionTrigger>Projects</AccordionTrigger>
-                            <AccordionContent>
-                                <Projects/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-                    <Accordion type="single" collapsible>
-                        <AccordionItem value="item-4">
-                            <AccordionTrigger>Experience</AccordionTrigger>
-                            <AccordionContent>
-                                <PracticalExperience/>
-                            </AccordionContent>
-                        </AccordionItem>
-                    </Accordion>
-            </div>
-        </div>
-    );
+      <div className="flex-1 xl:hidden bg-secondary px-4 ">
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-1">
+            <AccordionTrigger>General</AccordionTrigger>
+            <AccordionContent className={'w-full'}>
+              <GeneralInformation />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Education</AccordionTrigger>
+            <AccordionContent>
+              <EducationalExperience />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Projects</AccordionTrigger>
+            <AccordionContent>
+              <Projects />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+        <Accordion type="single" collapsible>
+          <AccordionItem value="item-4">
+            <AccordionTrigger>Experience</AccordionTrigger>
+            <AccordionContent>
+              <PracticalExperience />
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </div>
+    </div>
+  );
 }
