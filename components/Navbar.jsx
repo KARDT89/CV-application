@@ -14,12 +14,13 @@ import {
 import { Button } from '@/components/ui/button';
 import { AlignJustify } from 'lucide-react';
 import { X } from 'lucide-react';
+import Cv from '@/components/preview/cv';
 
-const Navbar = () => {
+const Navbar = ({ general, experience, education, projects }) => {
   return (
     <div
       className={
-        'bg-sidebar-accent flex justify-between lg:justify-between items-center px-4 py-3 lg:px-8 lg:py-3 border-b-2'
+        'bg-sidebar-accent flex justify-between lg:justify-between items-center px-4 py-3 lg:px-8 lg:py-3 border-b-2 sticky'
       }
     >
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
@@ -32,7 +33,12 @@ const Navbar = () => {
         </DrawerTrigger>
         <DrawerContent>
           <div className={'px-4 py-2 overflow-scroll'}>
-            <h1>Cv Here</h1>
+            <Cv
+              general={general}
+              experience={experience}
+              projects={projects}
+              education={education}
+            />
           </div>
           <DrawerFooter
             className={'flex flex-col items-center justify-between'}

@@ -4,7 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar22 } from '@/components/ui/date-picker';
-import { Trash2 } from 'lucide-react';
+import { Check, Trash2 } from 'lucide-react';
 
 const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
   const updateField = (id, field, value) => {
@@ -56,20 +56,22 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
           onChange={(e) => updateField(exp.id, 'to', e.getUTCFullYear())}
         />
       </div>
-      <span className="pt-4">
-        <Button variant={'ghost'} onClick={() => handleDelete(exp.id)}>
-          Delete
-          <Trash2 />
-        </Button>
-      </span>
+      <div className="flex justify-between pt-4">
+        <span>
+          <Button variant={'delete'} onClick={() => handleDelete(exp.id)}>
+            Delete
+            <Trash2 />
+          </Button>
+        </span>
+        <span>
+          <Button>
+            Save
+            <Check />
+          </Button>
+        </span>
+      </div>
     </form>
   );
 };
 
 export default PracticalExperience;
-
-function covertDate(date) {
-  let newDate = date.split(' ');
-  let result = newDate[1] + newDate[3];
-  return result;
-}

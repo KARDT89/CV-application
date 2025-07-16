@@ -3,7 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Calendar22 } from '@/components/ui/date-picker';
-import { Trash2 } from 'lucide-react';
+import { Check, Trash2 } from 'lucide-react';
 
 const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
   const updateField = (id, field, value) => {
@@ -51,12 +51,21 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
           onChange={(e) => updateField(edu.id, 'to', e.getUTCFullYear())}
         />
       </div>
-      <span className="pt-4">
-        <Button variant={'ghost'} onClick={() => handleDelete(edu.id)}>
-          Delete
-          <Trash2 />
-        </Button>
-      </span>
+      <div className="flex justify-between pt-4">
+        <span>
+          <Button variant={'delete'} onClick={() => handleDelete(edu.id)}>
+            Delete
+            <Trash2 />
+          </Button>
+        </span>
+
+        <span>
+          <Button>
+            Save
+            <Check />
+          </Button>
+        </span>
+      </div>
     </form>
   );
 };
