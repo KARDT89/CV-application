@@ -32,25 +32,31 @@ const Navbar = ({ general, experience, education, projects }) => {
         <DrawerTrigger className={'block xl:hidden'}>
           <AlignJustify />
         </DrawerTrigger>
-        <DrawerContent className={''}>
+        <DrawerContent>
+          <div className="flex justify-end gap-2 px-4 py-2">
+            <ModeToggle />
+            <Button variant="delete" onClick={() => convertToPDF('mobile-resume')}>
+              Download CV
+            </Button>
+          </div>
           <div
+          
             className={
-              'flex items-center h-full justify-center px-4 py-2 overflow-scroll'
+              'flex-1 md:flex md:justify-center md:items-center px-4 overflow-y-scroll'
             }
           >
-            <Cv
+          <div id='mobile-resume'>
+             <Cv
               general={general}
               experience={experience}
               projects={projects}
               education={education}
             />
           </div>
-          <div>
-            <Button variant="outline" onClick={convertToPDF}>
-              Download CV
-            </Button>
-            <ModeToggle />
+           
+           
           </div>
+
           <DrawerFooter
             className={'flex flex-col items-center justify-between'}
           >
@@ -79,7 +85,7 @@ const Navbar = ({ general, experience, education, projects }) => {
       </Drawer>
 
       <div className={'hidden xl:flex'}>
-        <Button variant="outline" onClick={convertToPDF}>
+        <Button variant="outline" onClick={() => convertToPDF('resume')}>
           Download CV
         </Button>
         <ModeToggle />
