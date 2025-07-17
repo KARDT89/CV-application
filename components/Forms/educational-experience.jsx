@@ -18,7 +18,7 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
     >
       <div className="flex justify-between items-center">
         <Label htmlFor="name-study" className="text-card-foreground">
-          School name
+          Organization
         </Label>
       </div>
       <Input
@@ -29,7 +29,7 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
         value={edu.school}
       />
       <Label htmlFor="title-study" className="text-card-foreground">
-        Title of study
+        Curriculum
       </Label>
       <Input
         name="title-study"
@@ -42,13 +42,13 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
           label={'From'}
           value={edu.from}
           // onChange={(e) => setData({ ...data, from: e.getUTCFullYear() })}
-          onChange={(e) => updateField(edu.id, 'from', e.getUTCFullYear())}
+          onChange={(e) => updateField(edu.id, 'from', e)}
         />
         <Calendar22
           label={'To'}
           value={edu.to}
           // onChange={(e) => setData({ ...data, to: e.getUTCFullYear() })}
-          onChange={(e) => updateField(edu.id, 'to', e.getUTCFullYear())}
+          onChange={(e) => updateField(edu.id, 'to', e)}
         />
       </div>
       <div className="flex justify-between pt-4">

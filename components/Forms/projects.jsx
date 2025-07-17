@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Check, Trash2 } from 'lucide-react';
+import { Calendar22 } from '../ui/date-picker';
 
 const Projects = ({ data, setData, value: project, handleDelete }) => {
   const updateField = (id, field, value) => {
@@ -51,6 +52,12 @@ const Projects = ({ data, setData, value: project, handleDelete }) => {
         type="text"
         value={project.github}
         onChange={(e) => updateField(project.id, 'github', e.target.value)}
+      />
+      <Calendar22
+        label={'Completion Date'}
+        value={project.date}
+        // onChange={(e) => setData({ ...data, from: e.getUTCFullYear() })}
+        onChange={(e) => updateField(project.id, 'date', e)}
       />
       <div className="flex justify-between pt-4">
         <span>

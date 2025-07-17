@@ -2,26 +2,54 @@ import Link from 'next/link';
 import React from 'react';
 
 const Cv = ({ general, education, experience, projects }) => {
+  function calculateDate(date) {
+    const today = new Date();
+    const year = today.toJSON().split('-');
+    const given = date.toJSON().split('-');
+    if (given[0] > year[0]) return false;
+    if (given[0] >= year[0] && given[1] > year[1]) return false;
+    return true;
+  }
   return (
     <div className="border-2 text-[8px] md:text-xs text-black bg-white w-[400px] h-[550px] md:w-[500px] md:h-[650px] lg:w-[600px] lg:h-[850px] p-4 font-[times-new-roman]">
-      <div className="flex justify-between items-start font-bold border-b pb-1 md:pb-2">
-        {/* Top Section */}
-        <h1 className="text-sm md:text-xl justify-start">{general.name}</h1>
-        <div className="flex flex-col md:gap-1 text-[8px] md:text-xs">
-          <span className="flex gap-1 justify-end ">
-            <p>Email: </p>
-            <p>{general.email}</p>
-          </span>
-          <div className="flex gap-2 justify-end">
-            <span className="flex gap-1">
-              <p>Mobile:</p>
-              <p>{general.phoneNumber}</p>
-            </span>
-            <Link href={'#'}>| Linkedin</Link>
-            <Link href={'#'}>| Github</Link>
+      {general.name && (
+        <div className="flex justify-between items-start font-bold border-b pb-1 md:pb-2">
+          {/* Top Section */}
+          <h1 className="text-sm md:text-xl justify-start">{general.name}</h1>
+          <div className="flex flex-col md:gap-1 text-[8px] md:text-xs">
+            {general.email && (
+              <span className="flex gap-1 justify-end ">
+                <p>Email: </p>
+                <p>{general.email}</p>
+              </span>
+            )}
+            {general.phoneNumber && (
+              <div className="flex gap-1 justify-end">
+                <span className="flex gap-1">
+                  <p>Mobile:</p>
+                  <p>{general.phoneNumber}</p>
+                </span>
+                {general.linkedin && (
+                  <Link href={`${general.linkedin}`} target="_blank">
+                    | Linkedin
+                  </Link>
+                )}
+                {general.x && (
+                  <Link href={`${general.x}`} target="_blank">
+                    | X
+                  </Link>
+                )}
+                {general.github && (
+                  <Link href={`${general.github}`} target="_blank">
+                    | Github
+                  </Link>
+                )}
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      )}
+
       {/* About */}
       {general.about && (
         <div className="text-[8px] md:text-xs py-1 md:py-2 italic border-b">
@@ -29,25 +57,93 @@ const Cv = ({ general, education, experience, projects }) => {
         </div>
       )}
       {/* Education */}
-      <div className="border-b pb-1 md:pb-2">
-        <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[16px] text-center">
-          Education
-        </h2>
-        <div className="flex flex-col gap-0.5">
-          {education &&
-            education.map((edu) => (
-              <div key={edu.id}>
-                <div className="flex justify-between">
-                  <p className="font-bold">{edu.school}</p>
-                  <span className="font-semibold">{edu.to}</span>
+      {education.length > 0 && (
+        <div className="border-b pb-1 md:pb-2">
+          <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[16px] text-center">
+            Education
+          </h2>
+
+          {education.map(({ id, title, school, to, from }) => (
+            <div key={id} className="md:space-y-0.5">
+              <div className="flex justify-between">
+                <p className="font-bold">{school}</p>
+                <span className="font-semibold">
+                  {to &&
+                    (calculateDate(to) ? (
+                      <p>{to.getUTCFullYear()}</p>
+                    ) : (
+                      <p>Ongoing</p>
+                    ))}
+                </span>
+              </div>
+              <div>
+                <p>{title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* Projects */}
+      {projects.length > 0 && (
+        <div className="border-b pb-1 md:pb-2">
+          <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[16px] text-center">
+            Projects
+          </h2>
+          {projects.map(({ id, name, github, live, description, date }) => (
+            <div key={id} className="md:space-y-0.5 pb-1 md:pb-2">
+              <div className="flex justify-between font-bold">
+                <div className="flex gap-1">
+                  <p>{name}</p>
+                  {live && <Link href={live}>| Live Demo </Link>}
+                  {github && <Link href={github}>| Github</Link>}
                 </div>
                 <div>
-                  <p>{edu.title}</p>
+                  {date &&
+                    (calculateDate(date) ? (
+                      <p>{date.getUTCFullYear()}</p>
+                    ) : (
+                      <p>Ongoing</p>
+                    ))}
                 </div>
               </div>
-            ))}
+              <div>
+                <p>{description}</p>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
+      )}
+      {/* Experience */}
+      {experience.length > 0 && (
+        <div className="border-b pb-1 md:pb-2">
+          <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[16px] text-center">
+            Experience
+          </h2>
+          {experience.map(({ id, name, position, description, from, to }) => (
+            <div key={id} className="md:space-y-0.5 pb-1 md:pb-2">
+              <div className="flex justify-between font-bold">
+                <div className="flex gap-1">
+                  <p>{name}</p>
+                  {position && <p>| {position}</p>}
+                </div>
+                <div className="flex gap-1">
+                  {from && <p>{from.getUTCFullYear()}</p>}-
+                  {to &&
+                    (calculateDate(to) ? (
+                      <p>{to.getUTCFullYear()}</p>
+                    ) : (
+                      <p> Present</p>
+                    ))}
+                </div>
+              </div>
+              <div>
+                <p>{description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

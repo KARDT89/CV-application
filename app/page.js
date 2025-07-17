@@ -23,23 +23,28 @@ export default function Home() {
     name: 'Tamal Sarkar',
     email: 'tamalsarkartwoooo@gmail.com',
     phoneNumber: 123456789,
-    about: 'test about',
+    about: `MCA graduate with a strong foundation in computer applications and programming. Eager to apply my skills in a
+            dynamic tech environment. Committed to continuous learning and excited about contributing to innovative projects
+            in a forward-thinking organization.`,
+    linkedin: 'https://www.linkedin.com/in/tamal-sarkar-099342221/',
+    github: 'https://github.com/KARDT89',
+    x: 'https://x.com/helloworldt89',
   });
 
   let [educationData, setEducationData] = useState([
     {
       id: crypto.randomUUID(),
-      school: 'school1',
-      title: 'MCA',
-      from: '2021',
-      to: '2023',
+      school: 'RCC Institute Of Information Technology​',
+      title: 'Master of Computer Application (MCA) | CGPA: 8.43​',
+      from: '',
+      to: '',
     },
     {
       id: crypto.randomUUID(),
-      school: 'school2',
-      title: 'B-tech',
-      from: '2021',
-      to: '2023',
+      school: 'Techno Main, Salt Lake​',
+      title: 'Bachelor Of Computer Application (BCA) | CGPA: 7.84',
+      from: '',
+      to: '',
     },
   ]);
 
@@ -50,6 +55,7 @@ export default function Home() {
       description: 'Simple Weather App',
       live: 'https://kardt89.github.io/WeatherApp/',
       github: 'https://github.com/KARDT89/WeatherApp',
+      date: '',
     },
   ]);
 
@@ -115,7 +121,7 @@ export default function Home() {
         education={educationData}
       />
       <div className="flex xl:h-[calc(100vh-64px)]">
-        <div className="hidden xl:flex overflow-y-auto max-h-screen xl:flex-col min-w-[300px] border-r-2 px-4 py-2">
+        <div className="hidden xl:flex overflow-y-auto max-h-screen xl:flex-col max-w-[400px] border-r-2 px-4 py-2">
           <Tabs defaultValue="account" className="w-full">
             <TabsList className={'flex justify-between'}>
               <TabsTrigger value="general">General</TabsTrigger>
@@ -133,7 +139,7 @@ export default function Home() {
                 <Accordion type="single" collapsible key={edu.id}>
                   <AccordionItem value={`${edu.id}`}>
                     <AccordionTrigger
-                      className={'border-1 p-2.5 px-4 bg-accent '}
+                      className={'border-1 p-2.5 px-4 bg-accent'}
                     >
                       {edu.title}
                     </AccordionTrigger>

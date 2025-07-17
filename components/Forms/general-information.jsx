@@ -2,6 +2,7 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '../ui/textarea';
+import { Github } from 'lucide-react';
 
 const GeneralInformation = ({ data, setData }) => {
   return (
@@ -51,6 +52,42 @@ const GeneralInformation = ({ data, setData }) => {
         className={'border-foreground/20'}
         value={data.about}
         onChange={(e) => setData({ ...data, about: e.target.value })}
+      />
+      <Label htmlFor="name" className="text-card-foreground">
+        LinkedIn
+      </Label>
+      <Input
+        id="linkedin"
+        name="linkedin"
+        type="text"
+        onChange={(e) => setData({ ...data, linkedin: e.target.value })}
+        value={data.linkedin}
+      />
+      <Label
+        htmlFor="name"
+        className="text-card-foreground flex gap-2 items-center"
+      >
+        Github <Github width={'15'} />
+      </Label>
+      <Input
+        id="github"
+        name="github"
+        type="text"
+        onChange={(e) => setData({ ...data, github: e.target.value })}
+        value={data.github}
+      />
+      <Label
+        htmlFor="name"
+        className="text-card-foreground flex gap-2 items-center"
+      >
+        X (formerly known as Twitter)
+      </Label>
+      <Input
+        id="x"
+        name="x"
+        type="text"
+        onChange={(e) => setData({ ...data, x: e.target.value })}
+        value={data.x}
       />
     </form>
   );

@@ -48,12 +48,12 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
         <Calendar22
           label={'From'}
           value={exp.from}
-          onChange={(e) => updateField(exp.id, 'from', e.getUTCFullYear())}
+          onChange={(e) => updateField(exp.id, 'from', e)}
         />
         <Calendar22
           label={'To'}
           value={exp.to}
-          onChange={(e) => updateField(exp.id, 'to', e.getUTCFullYear())}
+          onChange={(e) => updateField(exp.id, 'to', e)}
         />
       </div>
       <div className="flex justify-between pt-4">
