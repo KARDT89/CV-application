@@ -14,7 +14,7 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
   return (
     <form
       action=""
-      className="flex flex-col bg-card max-w-sm p-6 gap-3 border border-foreground/20 rounded-l"
+      className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
       <div className="flex justify-between items-center">
         <Label htmlFor="name-study" className="text-card-foreground">

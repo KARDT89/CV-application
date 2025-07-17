@@ -8,7 +8,7 @@ const GeneralInformation = ({ data, setData }) => {
   return (
     <form
       method="post"
-      className="flex flex-col bg-card max-w-sm p-6 gap-3 border border-foreground/20 rounded-l"
+      className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
       <Label htmlFor="name" className="text-card-foreground">
         Name

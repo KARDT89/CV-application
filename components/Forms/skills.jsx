@@ -3,62 +3,40 @@ import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { Calendar22 } from '@/components/ui/date-picker';
 import { Check, Trash2 } from 'lucide-react';
 
-const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
+const SkillZ = ({ data, setData, value: skills, handleDelete }) => {
   const updateField = (id, field, value) => {
     setData(
       data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
     );
   };
-
   return (
     <form
       action=""
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
       <Label htmlFor="name" className="text-card-foreground">
-        Company Name
+        Category
       </Label>
       <Input
         name="name"
         type="text"
-        value={exp.name}
-        onChange={(e) => updateField(exp.id, 'name', e.target.value)}
-      />
-      <Label htmlFor="email" className="text-card-foreground">
-        Position Title
-      </Label>
-      <Input
-        name="position"
-        type="text"
-        value={exp.position}
-        onChange={(e) => updateField(exp.id, 'position', e.target.value)}
+        value={skills.category}
+        onChange={(e) => updateField(skills.id, 'category', e.target.value)}
       />
       <Label htmlFor="description" className="text-card-foreground">
-        Description
+        Skills
       </Label>
       <Textarea
+        name="description"
+        value={skills.skills}
         className={'border-foreground/20'}
-        value={exp.description}
-        onChange={(e) => updateField(exp.id, 'description', e.target.value)}
+        onChange={(e) => updateField(skills.id, 'skills', e.target.value)}
       />
-      <div className={'flex justify-between'}>
-        <Calendar22
-          label={'From'}
-          value={exp.from}
-          onChange={(e) => updateField(exp.id, 'from', e)}
-        />
-        <Calendar22
-          label={'To'}
-          value={exp.to}
-          onChange={(e) => updateField(exp.id, 'to', e)}
-        />
-      </div>
       <div className="flex justify-between pt-4">
         <span>
-          <Button variant={'delete'} onClick={() => handleDelete(exp.id)}>
+          <Button variant={'delete'} onClick={() => handleDelete(skills.id)}>
             Delete
             <Trash2 />
           </Button>
@@ -74,4 +52,4 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
   );
 };
 
-export default PracticalExperience;
+export default SkillZ;

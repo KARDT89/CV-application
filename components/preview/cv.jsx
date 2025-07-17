@@ -3,7 +3,7 @@ import React from 'react';
 import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 import { FaAngleRight } from "react-icons/fa";
 
-const Cv = ({ general, education, experience, projects }) => {
+const Cv = ({ general, education, experience, projects, skills }) => {
   function calculateDate(date) {
     const today = new Date();
     const year = today.toJSON().split('-');
@@ -68,6 +68,7 @@ const Cv = ({ general, education, experience, projects }) => {
           {general.about}
         </div>
       )}
+      
       {/* Education */}
       {education.length > 0 && (
         <div className="border-b pb-1 md:pb-2">
@@ -95,7 +96,23 @@ const Cv = ({ general, education, experience, projects }) => {
           ))}
         </div>
       )}
+      {/* Skills */}
+      {skills && (
+        <div className="border-b pb-1 md:pb-2">
+          <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[14px] lg:text-[16px] text-center">
+            Skills
+          </h2>
 
+          {skills.map(({ id, category, skills}) => (
+            <div key={id} className="md:space-y-0.5">
+              <div className='flex'>
+                <p className='font-bold'>{category}</p>
+                <p>: {skills}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
       {/* Projects */}
       {projects.length > 0 && (
         <div className="border-b pb-1 md:pb-2">
@@ -136,7 +153,7 @@ const Cv = ({ general, education, experience, projects }) => {
       )}
       {/* Experience */}
       {experience.length > 0 && (
-        <div className="border-b pb-1 md:pb-2">
+        <div className="pb-1 md:pb-2">
           <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[14px] lg:text-[16px] text-center">
             Experience
           </h2>
