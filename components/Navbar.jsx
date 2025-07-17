@@ -32,7 +32,11 @@ const Navbar = ({ general, experience, education, projects }) => {
           <AlignJustify />
         </DrawerTrigger>
         <DrawerContent>
-          <div className={'px-4 py-2 overflow-scroll'}>
+          <div
+            className={
+              'flex items-center justify-center px-4 py-2 overflow-scroll'
+            }
+          >
             <Cv
               general={general}
               experience={experience}
@@ -58,7 +62,7 @@ const Navbar = ({ general, experience, education, projects }) => {
             </DrawerDescription>
             <DrawerClose className={'flex gap-2'}>
               <Button variant="outline">
-                <X />
+                Cancel <X />
               </Button>
               <ModeToggle />
             </DrawerClose>
