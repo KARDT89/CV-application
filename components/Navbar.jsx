@@ -13,8 +13,9 @@ import {
 } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
 import { AlignJustify } from 'lucide-react';
-import { X } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Cv from '@/components/preview/cv';
+import { convertToPDF } from '@/lib/downloadResume.js';
 
 const Navbar = ({ general, experience, education, projects }) => {
   return (
@@ -31,10 +32,10 @@ const Navbar = ({ general, experience, education, projects }) => {
         <DrawerTrigger className={'block xl:hidden'}>
           <AlignJustify />
         </DrawerTrigger>
-        <DrawerContent>
+        <DrawerContent className={''}>
           <div
             className={
-              'flex items-center justify-center px-4 py-2 overflow-scroll'
+              'flex items-center h-full justify-center px-4 py-2 overflow-scroll'
             }
           >
             <Cv
@@ -43,6 +44,12 @@ const Navbar = ({ general, experience, education, projects }) => {
               projects={projects}
               education={education}
             />
+          </div>
+          <div>
+            <Button variant="outline" onClick={convertToPDF}>
+              Download CV
+            </Button>
+            <ModeToggle />
           </div>
           <DrawerFooter
             className={'flex flex-col items-center justify-between'}
@@ -61,16 +68,20 @@ const Navbar = ({ general, experience, education, projects }) => {
               Made with ❤️ by <span className={'font-dt89'}>DT89</span>
             </DrawerDescription>
             <DrawerClose className={'flex gap-2'}>
-              <Button variant="outline">
+              {/* <Button variant="outline">
                 Cancel <X />
               </Button>
-              <ModeToggle />
+               <Button variant="outline" onClick={convertToPDF}>Download CV</Button>
+              <ModeToggle /> */}
             </DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
 
       <div className={'hidden xl:flex'}>
+        <Button variant="outline" onClick={convertToPDF}>
+          Download CV
+        </Button>
         <ModeToggle />
       </div>
     </div>
