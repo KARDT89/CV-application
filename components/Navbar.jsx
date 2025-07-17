@@ -84,7 +84,7 @@ const Navbar = ({ general, experience, education, projects }) => {
         </DrawerContent>
       </Drawer>
 
-      <div className={'hidden xl:flex'}>
+      <div className={'hidden xl:flex xl:gap-2'}>
         <Button variant="outline" onClick={() => convertToPDF('resume')}>
           Download CV
         </Button>
