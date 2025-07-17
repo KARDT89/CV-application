@@ -17,7 +17,6 @@ import { ArrowLeft } from 'lucide-react';
 import Cv from '@/components/preview/cv';
 import { convertToPDF } from '@/lib/downloadResume.js';
 import Link from 'next/link';
-import { handleShare } from '@/lib/shareAsPDF';
 
 const Navbar = ({ general, experience, education, projects }) => {
   return (
@@ -26,8 +25,6 @@ const Navbar = ({ general, experience, education, projects }) => {
         'bg-sidebar-accent flex justify-between lg:justify-between items-center px-4 py-3 lg:px-8 lg:py-3 border-b-2 sticky'
       }
     >
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-
       <h1 className={'text-md lg:text-2xl flex items-center gap-4 font-mono'}>
         <Link href={'https://github.com/KARDT89/CV-application'} target="blank">
           PaperTrail
@@ -40,13 +37,9 @@ const Navbar = ({ general, experience, education, projects }) => {
         <DrawerContent>
           <div className="flex justify-end gap-2 px-4 py-2">
             <ModeToggle />
-            <Button
-              variant="delete"
-              onClick={() => convertToPDF('mobile-resume')}
-            >
+            <Button onClick={() => convertToPDF('mobile-resume')}>
               Download CV
             </Button>
-            <Button onClick={handleShare}>Share as PDF</Button>
           </div>
           <div
             className={
@@ -79,13 +72,7 @@ const Navbar = ({ general, experience, education, projects }) => {
             <DrawerDescription>
               Made with ❤️ by <span className={'font-dt89'}>DT89</span>
             </DrawerDescription>
-            <DrawerClose className={'flex gap-2'}>
-              {/* <Button variant="outline">
-                Cancel <X />
-              </Button>
-               <Button variant="outline" onClick={convertToPDF}>Download CV</Button>
-              <ModeToggle /> */}
-            </DrawerClose>
+            <DrawerClose className={'flex gap-2'}></DrawerClose>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

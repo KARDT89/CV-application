@@ -2,7 +2,7 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '../ui/textarea';
-import { Github } from 'lucide-react';
+import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
 
 const GeneralInformation = ({ data, setData }) => {
   return (
@@ -45,16 +45,9 @@ const GeneralInformation = ({ data, setData }) => {
           })
         }
       />
-      <Label htmlFor="description" className="text-card-foreground">
-        About
-      </Label>
-      <Textarea
-        className={'border-foreground/20'}
-        value={data.about}
-        onChange={(e) => setData({ ...data, about: e.target.value })}
-      />
-      <Label htmlFor="name" className="text-card-foreground">
-        LinkedIn
+      
+      <Label htmlFor="name" className="text-card-foreground flex gap-2 items-center">
+        LinkedIn <FaLinkedin />
       </Label>
       <Input
         id="linkedin"
@@ -67,7 +60,7 @@ const GeneralInformation = ({ data, setData }) => {
         htmlFor="name"
         className="text-card-foreground flex gap-2 items-center"
       >
-        Github <Github width={'15'} />
+        Github <FaGithub />
       </Label>
       <Input
         id="github"
@@ -80,7 +73,7 @@ const GeneralInformation = ({ data, setData }) => {
         htmlFor="name"
         className="text-card-foreground flex gap-2 items-center"
       >
-        X (formerly known as Twitter)
+        Twitter <FaXTwitter/>
       </Label>
       <Input
         id="x"
@@ -88,6 +81,14 @@ const GeneralInformation = ({ data, setData }) => {
         type="text"
         onChange={(e) => setData({ ...data, x: e.target.value })}
         value={data.x}
+      />
+      <Label htmlFor="description" className="text-card-foreground">
+        About
+      </Label>
+      <Textarea
+        className={'border-foreground/20'}
+        value={data.about}
+        onChange={(e) => setData({ ...data, about: e.target.value })}
       />
     </form>
   );

@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
+import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaAngleRight } from "react-icons/fa";
 
 const Cv = ({ general, education, experience, projects }) => {
   function calculateDate(date) {
@@ -13,7 +15,7 @@ const Cv = ({ general, education, experience, projects }) => {
   return (
     <div
       id="resume"
-      className="border-2 border-black text-[8px] md:text-xs text-black bg-white w-[330px] h-[550px] md:w-[500px] md:h-[750px] lg:w-[600px] lg:h-[850px] p-4 font-[times-new-roman]"
+      className="border-2 border-black text-[8px] md:text-xs text-black bg-white w-[350px] h-[550px] md:w-[550px] md:h-[800px] p-4 font-[times-new-roman]"
     >
       {general.name && (
         <div className="flex justify-between items-start font-bold border-b pb-1 md:pb-2">
@@ -31,22 +33,29 @@ const Cv = ({ general, education, experience, projects }) => {
                 <span className="flex gap-1">
                   <p>Mobile:</p>
                   <p>{general.phoneNumber}</p>
+                  
                 </span>
-                {general.linkedin && (
+                <div className='flex items-center gap-1'>
+                  <span>|</span>
+                  {general.linkedin && (
+                    
                   <Link href={`${general.linkedin}`} target="_blank">
-                    | Linkedin
+                    
+                    <FaLinkedin/>
                   </Link>
                 )}
                 {general.x && (
                   <Link href={`${general.x}`} target="_blank">
-                    | X
+                    <FaXTwitter/>
                   </Link>
                 )}
                 {general.github && (
                   <Link href={`${general.github}`} target="_blank">
-                    | Github
+                    <FaGithub/>
                   </Link>
                 )}
+                </div>
+                
               </div>
             )}
           </div>
@@ -99,13 +108,13 @@ const Cv = ({ general, education, experience, projects }) => {
                 <div className="flex gap-1">
                   <p>{name}</p>
                   {live && (
-                    <Link href={live} target="_blank">
-                      | Live Demo{' '}
+                    <Link href={live} target="_blank" className='flex justify-center items-center gap-1'>
+                      |<FaAngleRight/> Live{' '}
                     </Link>
                   )}
                   {github && (
-                    <Link href={github} target="_blank">
-                      | Github
+                    <Link href={github} target="_blank" className='flex items-center justify-center gap-1'>
+                      | <FaGithub/>Github
                     </Link>
                   )}
                 </div>
