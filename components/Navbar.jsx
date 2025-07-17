@@ -16,6 +16,8 @@ import { AlignJustify } from 'lucide-react';
 import { ArrowLeft } from 'lucide-react';
 import Cv from '@/components/preview/cv';
 import { convertToPDF } from '@/lib/downloadResume.js';
+import Link from 'next/link';
+import { handleShare } from '@/lib/shareAsPDF';
 
 const Navbar = ({ general, experience, education, projects }) => {
   return (
@@ -25,8 +27,11 @@ const Navbar = ({ general, experience, education, projects }) => {
       }
     >
       {/* eslint-disable-next-line jsx-a11y/alt-text */}
+
       <h1 className={'text-md lg:text-2xl flex items-center gap-4 font-mono'}>
-        PaperTrail
+        <Link href={'https://github.com/KARDT89/CV-application'} target="blank">
+          PaperTrail
+        </Link>
       </h1>
       <Drawer>
         <DrawerTrigger className={'block xl:hidden'}>
@@ -35,26 +40,27 @@ const Navbar = ({ general, experience, education, projects }) => {
         <DrawerContent>
           <div className="flex justify-end gap-2 px-4 py-2">
             <ModeToggle />
-            <Button variant="delete" onClick={() => convertToPDF('mobile-resume')}>
+            <Button
+              variant="delete"
+              onClick={() => convertToPDF('mobile-resume')}
+            >
               Download CV
             </Button>
+            <Button onClick={handleShare}>Share as PDF</Button>
           </div>
           <div
-          
             className={
-              'flex-1 md:flex md:justify-center md:items-center px-4 overflow-y-scroll'
+              'flex-1 flex justify-center md:items-center px-4 overflow-y-scroll'
             }
           >
-          <div id='mobile-resume'>
-             <Cv
-              general={general}
-              experience={experience}
-              projects={projects}
-              education={education}
-            />
-          </div>
-           
-           
+            <div id="mobile-resume">
+              <Cv
+                general={general}
+                experience={experience}
+                projects={projects}
+                education={education}
+              />
+            </div>
           </div>
 
           <DrawerFooter

@@ -13,7 +13,7 @@ const Cv = ({ general, education, experience, projects }) => {
   return (
     <div
       id="resume"
-      className="border-2 border-black text-[8px] md:text-xs text-black bg-white w-[335px] h-[550px] md:w-[500px] md:h-[750px] lg:w-[600px] lg:h-[850px] p-4 font-[times-new-roman]"
+      className="border-2 border-black text-[8px] md:text-xs text-black bg-white w-[330px] h-[550px] md:w-[500px] md:h-[750px] lg:w-[600px] lg:h-[850px] p-4 font-[times-new-roman]"
     >
       {general.name && (
         <div className="flex justify-between items-start font-bold border-b pb-1 md:pb-2">
