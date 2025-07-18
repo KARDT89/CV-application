@@ -7,21 +7,19 @@ import { Button } from '../ui/button';
 import { Check } from 'lucide-react';
 import { toast } from 'sonner';
 
-
 const GeneralInformation = ({ data, setData, handleSave }) => {
-   function reset(){
-    toast("Successfully Reset to Default Values")
+  function reset() {
+    toast('Successfully Reset to Default Values');
     localStorage.clear();
     window.location.reload();
   }
 
-
   return (
     <form
-    onSubmit={(e) => {
-            e.preventDefault();
-            toast('Successfully Saved');
-          }}
+      onSubmit={(e) => {
+        e.preventDefault();
+        toast('Successfully Saved');
+      }}
       method="post"
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
