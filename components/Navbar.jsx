@@ -27,7 +27,7 @@ const Navbar = ({ general, experience, education, projects }) => {
     >
       <h1 className={'text-md lg:text-2xl flex items-center gap-4 font-mono'}>
         <Link href={'https://github.com/KARDT89/CV-application'} target="blank">
-          Placeholder
+          PlaceHolder
         </Link>
       </h1>
       <Drawer>

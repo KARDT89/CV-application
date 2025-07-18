@@ -15,7 +15,7 @@ const geistMono = localFont({
 });
 
 export const metadata = {
-  title: 'PaperTrail',
+  title: 'PlaceHolder',
   description: 'Build and preview professional CVs with a clean UI.',
 };
 
