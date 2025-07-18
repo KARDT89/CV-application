@@ -409,7 +409,7 @@ export default function Home() {
             <AccordionItem value="item-5">
               <AccordionTrigger>Skills</AccordionTrigger>
               <AccordionContent>
-                <Button onClick={handleProjectSubmit}>Add Skills</Button>
+                <Button onClick={handleSkillsSubmit}>Add Skills</Button>
                 <div
                   className={
                     'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 pt-4 gap-2'
