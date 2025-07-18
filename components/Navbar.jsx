@@ -18,7 +18,7 @@ import Cv from '@/components/preview/cv';
 import { convertToPDF } from '@/lib/downloadResume.js';
 import Link from 'next/link';
 
-const Navbar = ({ general, experience, education, projects }) => {
+const Navbar = ({ general, experience, education, skills, projects }) => {
   return (
     <div
       className={
@@ -52,6 +52,7 @@ const Navbar = ({ general, experience, education, projects }) => {
                 experience={experience}
                 projects={projects}
                 education={education}
+                skills={skills}
               />
             </div>
           </div>

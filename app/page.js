@@ -18,7 +18,6 @@ import Cv from '@/components/preview/cv';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
 import { toast } from 'sonner';
-import { BarLoader } from 'react-spinners';
 
 export default function Home() {
   let [generalData, setGeneralData] = useState({

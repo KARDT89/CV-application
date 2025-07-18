@@ -15,14 +15,13 @@ const GeneralInformation = ({ data, setData, handleSave }) => {
     window.location.reload();
   }
 
-  function handleSaveClick(e) {
-    e.preventDefault();
-    handleSave(); // Call the actual save function
-    toast('Successfully Saved');
-  }
+
   return (
     <form
-    onSubmit={handleSaveClick}
+    onSubmit={(e) => {
+            e.preventDefault();
+            toast('Successfully Saved');
+          }}
       method="post"
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -116,7 +115,7 @@ const GeneralInformation = ({ data, setData, handleSave }) => {
           </Button>
         </span>
         <span>
-          <Button type="submit">
+          <Button onClick={handleSave}>
             Save
             <Check />
           </Button>
