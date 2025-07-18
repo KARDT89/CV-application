@@ -2,11 +2,27 @@ import React from 'react';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '../ui/textarea';
-import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedin, FaGithub } from 'react-icons/fa6';
+import { Button } from '../ui/button';
+import { Check } from 'lucide-react';
+import { toast } from 'sonner';
 
-const GeneralInformation = ({ data, setData }) => {
+
+const GeneralInformation = ({ data, setData, handleSave }) => {
+   function reset(){
+    toast("Successfully Reset to Default Values")
+    localStorage.clear();
+    window.location.reload();
+  }
+
+  function handleSaveClick(e) {
+    e.preventDefault();
+    handleSave(); // Call the actual save function
+    toast('Successfully Saved');
+  }
   return (
     <form
+    onSubmit={handleSaveClick}
       method="post"
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -45,8 +61,11 @@ const GeneralInformation = ({ data, setData }) => {
           })
         }
       />
-      
-      <Label htmlFor="name" className="text-card-foreground flex gap-2 items-center">
+
+      <Label
+        htmlFor="name"
+        className="text-card-foreground flex gap-2 items-center"
+      >
         LinkedIn <FaLinkedin />
       </Label>
       <Input
@@ -73,7 +92,7 @@ const GeneralInformation = ({ data, setData }) => {
         htmlFor="name"
         className="text-card-foreground flex gap-2 items-center"
       >
-        Twitter <FaXTwitter/>
+        Twitter <FaXTwitter />
       </Label>
       <Input
         id="x"
@@ -90,6 +109,19 @@ const GeneralInformation = ({ data, setData }) => {
         value={data.about}
         onChange={(e) => setData({ ...data, about: e.target.value })}
       />
+      <div className="flex justify-between pt-4">
+        <span>
+          <Button variant={'delete'} onClick={reset}>
+            Reset To Default
+          </Button>
+        </span>
+        <span>
+          <Button type="submit">
+            Save
+            <Check />
+          </Button>
+        </span>
+      </div>
     </form>
   );
 };

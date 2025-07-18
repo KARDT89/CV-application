@@ -5,8 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Calendar22 } from '@/components/ui/date-picker';
 import { Check, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 
-const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
+const PracticalExperience = ({
+  data,
+  setData,
+  value: exp,
+  handleDelete,
+  handleSave,
+}) => {
   const updateField = (id, field, value) => {
     setData(
       data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
@@ -15,6 +22,11 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
 
   return (
     <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        toast('Successfully Saved');
+        // handleSave();
+      }}
       action=""
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -48,12 +60,12 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
         <Calendar22
           label={'From'}
           value={exp.from}
-          onChange={(e) => updateField(exp.id, 'from', e)}
+          onChange={(e) => updateField(exp.id, 'from', e.toJSON())}
         />
         <Calendar22
           label={'To'}
           value={exp.to}
-          onChange={(e) => updateField(exp.id, 'to', e)}
+          onChange={(e) => updateField(exp.id, 'to', e.toJSON())}
         />
       </div>
       <div className="flex justify-between pt-4">
@@ -64,7 +76,7 @@ const PracticalExperience = ({ data, setData, value: exp, handleDelete }) => {
           </Button>
         </span>
         <span>
-          <Button>
+          <Button onClick={handleSave}>
             Save
             <Check />
           </Button>

@@ -13,22 +13,24 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Cv from '@/components/preview/cv';
 import { Button } from '@/components/ui/button';
 import Navbar from '@/components/Navbar';
+import { toast } from 'sonner';
+import { BarLoader } from 'react-spinners';
 
 export default function Home() {
   let [generalData, setGeneralData] = useState({
     name: 'Tamal Sarkar 💻',
-    email: 'tamal.sarkar@example.com',
+    email: 'tamalsarkartwoooo@gmail.com',
     phoneNumber: 9876543210,
     about: `Full-time dev learner | MCA graduate with a strong foundation in computer applications and programming. Eager to apply my skills in a
-dynamic tech environment. Committed to continuous learning and excited about contributing to innovative projects
-in a forward-thinking organization.`,
+            dynamic tech environment. Committed to continuous learning and excited about contributing to innovative projects
+            in a forward-thinking organization.`,
     linkedin: 'https://linkedin.com/in/tamal-sarkar',
     github: 'https://github.com/KARDT89',
-    x: 'https://twitter.com/tamalsarkar',
+    x: 'https://x.com/helloworldt89',
   });
 
   let [educationData, setEducationData] = useState([
@@ -39,42 +41,15 @@ in a forward-thinking organization.`,
       from: '',
       to: '',
     },
-    {
-      id: crypto.randomUUID(),
-      school: 'Techno Main, Salt Lake​​',
-      title: 'Bachelor Of Computer Application (BCA)',
-      from: '',
-      to: '',
-    },
   ]);
 
   let [projectData, setProjectData] = useState([
     {
       id: crypto.randomUUID(),
-      name: 'Binary Search Tree Visualizer 🌳',
-      description:
-        'Custom JavaScript BST implementation with pretty-printing, recursive methods, and full CRUD support 🛠️. Inspired by Leetcode 450 and NeetCode’s patterns.',
+      name: 'Placeholder',
+      description: 'This Project!!',
       live: 'https://github.com/KARDT89/Binary-Search-Trees',
-      github: 'https://github.com/KARDT89/Binary-Search-Trees',
-      date: '',
-    },
-    {
-      id: crypto.randomUUID(),
-      name: 'ThunderCodeX',
-      description: `Built a coding platform using Next.js where users solve algorithmic problems with real-time feedback and
-                  progress tracking. Integrated Firebase for authentication and data storage, designed a responsive
-                  dark-themed UI with Tailwind CSS, and deployed on Vercel for global availability and fast performance.`,
-      live: 'https://github.com/KARDT89/Binary-Search-Trees',
-      github: 'https://github.com/KARDT89/Binary-Search-Trees',
-      date: '',
-    },
-    {
-      id: crypto.randomUUID(),
-      name: 'Weather App ⛅🌍',
-      description:
-        'A responsive weather forecasting app built using JavaScript and OpenWeatherMap API 🌦️. Lets users search any city and get real-time weather info including temperature, humidity, and sky conditions. Clean UI, minimal CSS, and async-fetch magic ✨.',
-      live: 'https://kardt89.github.io/weather-app/', // Update if hosted somewhere else
-      github: 'https://github.com/KARDT89/weather-app',
+      github: 'https://github.com/KARDT89/CV-application',
       date: '',
     },
   ]);
@@ -84,36 +59,15 @@ in a forward-thinking organization.`,
       category: 'Languages',
       skills: 'JavaScript, C++, Python, HTML, CSS',
     },
-    {
-      id: crypto.randomUUID(),
-      category: 'Frameworks & Libraries',
-      skills: 'React, Node.js, Tailwind CSS, Express',
-    },
-    {
-      id: crypto.randomUUID(),
-      category: 'Tools',
-      skills: 'Git, GitHub, Vite, VS Code, Postman',
-    },
-    {
-      id: crypto.randomUUID(),
-      category: 'Certifications',
-      skills: 'CS50x by Harvard University',
-    },
-    {
-      id: crypto.randomUUID(),
-      category: 'Achievements',
-      skills:
-        'Participated in an international event, “Overwatch World Cup,” representing India.',
-    },
   ]);
 
   let [experienceData, setExperienceData] = useState([
     {
       id: crypto.randomUUID(),
-      name: 'Personal Dev Journey 🧗',
+      name: 'Personal Dev Journey',
       position: 'Full Stack Dev (Self-Taught)',
       description:
-        'Building projects daily 💪, learning from The Odin Project, solving Leetcode 📈, and exploring how AI blends with frontend apps 🤖.',
+        'Building projects daily, learning from The Odin Project, solving Leetcode , and exploring how AI blends with frontend apps.',
       from: '',
       to: '',
     },
@@ -160,18 +114,89 @@ in a forward-thinking organization.`,
   }
 
   function handleProjectsDelete(id) {
-    setProjectData(projectData.filter((item) => item.id !== id));
+    // setProjectData(projectData.filter((item) => item.id !== id));
+    setProjectData((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      localStorage.setItem('project', JSON.stringify(updated));
+      toast('Successfully Deleted');
+      return updated;
+    });
   }
   function handleExperienceDelete(id) {
-    setExperienceData(experienceData.filter((item) => item.id !== id));
+    // setExperienceData(experienceData.filter((item) => item.id !== id));
+    setExperienceData((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      localStorage.setItem('experience', JSON.stringify(updated));
+      toast('Successfully Deleted');
+      return updated;
+    });
   }
   function handleEducationDelete(id) {
-    setEducationData(educationData.filter((item) => item.id !== id));
+    setEducationData((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      localStorage.setItem('education', JSON.stringify(updated));
+      toast('Successfully Deleted');
+      return updated;
+    });
   }
   function handleSkillsDelete(id) {
-    setSkillsData(skillsData.filter((item) => item.id !== id));
+    // setSkillsData(skillsData.filter((item) => item.id !== id));
+    setSkillsData((prev) => {
+      const updated = prev.filter((item) => item.id !== id);
+      localStorage.setItem('skills', JSON.stringify(updated));
+      toast('Successfully Deleted');
+      return updated;
+    });
   }
 
+  function handleSaveGeneral() {
+    localStorage.setItem('general', JSON.stringify(generalData));
+  }
+
+  function handleSaveEducation() {
+    localStorage.setItem('education', JSON.stringify(educationData));
+  }
+
+  function handleSaveProjects() {
+    localStorage.setItem('project', JSON.stringify(projectData));
+  }
+
+  function handleSaveSkills() {
+    localStorage.setItem('skills', JSON.stringify(skillsData));
+  }
+
+  function handleSaveExperience() {
+    localStorage.setItem('experience', JSON.stringify(experienceData));
+  }
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Update your useEffect
+  useEffect(() => {
+    const storedGeneral = localStorage.getItem('general');
+    if (storedGeneral) setGeneralData(JSON.parse(storedGeneral));
+
+    const storedEducation = localStorage.getItem('education');
+    if (storedEducation) setEducationData(JSON.parse(storedEducation));
+
+    const storedProjects = localStorage.getItem('project');
+    if (storedProjects) setProjectData(JSON.parse(storedProjects));
+
+    const storedSkills = localStorage.getItem('skills');
+    if (storedSkills) setSkillsData(JSON.parse(storedSkills));
+
+    const storedExperience = localStorage.getItem('experience');
+    if (storedExperience) setExperienceData(JSON.parse(storedExperience));
+
+    setIsLoading(false);
+  }, []);
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        Loading...
+      </div>
+    );
+  }
   return (
     <>
       <Navbar
@@ -192,7 +217,11 @@ in a forward-thinking organization.`,
               <TabsTrigger value="experience">Experience</TabsTrigger>
             </TabsList>
             <TabsContent value="general">
-              <GeneralInformation data={generalData} setData={setGeneralData} />
+              <GeneralInformation
+                data={generalData}
+                setData={setGeneralData}
+                handleSave={handleSaveGeneral}
+              />
             </TabsContent>
             <TabsContent value="education" className="flex flex-col gap-2">
               <Button onClick={handleEducationSubmit}>Add Education</Button>
@@ -211,6 +240,7 @@ in a forward-thinking organization.`,
                         setData={setEducationData}
                         value={edu}
                         handleDelete={handleEducationDelete}
+                        handleSave={handleSaveEducation}
                       />
                     </AccordionContent>
                   </AccordionItem>
@@ -236,6 +266,7 @@ in a forward-thinking organization.`,
                         setData={setProjectData}
                         value={project}
                         handleDelete={handleProjectsDelete}
+                        handleSave={handleSaveProjects}
                       />
                     </AccordionContent>
                   </AccordionItem>
@@ -258,6 +289,7 @@ in a forward-thinking organization.`,
                         setData={setSkillsData}
                         value={skills}
                         handleDelete={handleSkillsDelete}
+                        handleSave={handleSaveSkills}
                       />
                     </AccordionContent>
                   </AccordionItem>
@@ -283,6 +315,7 @@ in a forward-thinking organization.`,
                         setData={setExperienceData}
                         value={exp}
                         handleDelete={handleExperienceDelete}
+                        handleSave={handleSaveExperience}
                       />
                     </AccordionContent>
                   </AccordionItem>
@@ -328,6 +361,7 @@ in a forward-thinking organization.`,
                             setData={setEducationData}
                             value={edu}
                             handleDelete={handleEducationDelete}
+                            handleSave={handleSaveEducation}
                           />
                         </AccordionContent>
                       </AccordionItem>
@@ -361,6 +395,7 @@ in a forward-thinking organization.`,
                             setData={setProjectData}
                             value={project}
                             handleDelete={handleProjectsDelete}
+                            handleSave={handleSaveProjects}
                           />
                         </AccordionContent>
                       </AccordionItem>
@@ -394,6 +429,7 @@ in a forward-thinking organization.`,
                             setData={setSkillsData}
                             value={skills}
                             handleDelete={handleSkillsDelete}
+                            handleSave={handleSaveSkills}
                           />
                         </AccordionContent>
                       </AccordionItem>
@@ -427,6 +463,7 @@ in a forward-thinking organization.`,
                             setData={setExperienceData}
                             value={exp}
                             handleDelete={handleExperienceDelete}
+                            handleSave={handleSaveExperience}
                           />
                         </AccordionContent>
                       </AccordionItem>

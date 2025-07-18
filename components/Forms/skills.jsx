@@ -4,8 +4,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Check, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 
-const SkillZ = ({ data, setData, value: skills, handleDelete }) => {
+const SkillZ = ({ data, setData, value: skills, handleDelete, handleSave }) => {
   const updateField = (id, field, value) => {
     setData(
       data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
@@ -13,6 +14,11 @@ const SkillZ = ({ data, setData, value: skills, handleDelete }) => {
   };
   return (
     <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        toast('Successfully Saved');
+        // handleSave();
+      }}
       action=""
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -42,7 +48,7 @@ const SkillZ = ({ data, setData, value: skills, handleDelete }) => {
           </Button>
         </span>
         <span>
-          <Button>
+          <Button onClick={handleSave}>
             Save
             <Check />
           </Button>

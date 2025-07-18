@@ -1,13 +1,14 @@
 import Link from 'next/link';
 import React from 'react';
-import { FaXTwitter, FaLinkedin, FaGithub } from "react-icons/fa6";
-import { FaAngleRight } from "react-icons/fa";
+import { FaXTwitter, FaLinkedin, FaGithub } from 'react-icons/fa6';
+import { FaAngleRight } from 'react-icons/fa';
 
 const Cv = ({ general, education, experience, projects, skills }) => {
   function calculateDate(date) {
     const today = new Date();
     const year = today.toJSON().split('-');
-    const given = date.toJSON().split('-');
+
+    const given = date.split('-');
     if (given[0] > year[0]) return false;
     if (given[0] >= year[0] && given[1] > year[1]) return false;
     return true;
@@ -28,36 +29,36 @@ const Cv = ({ general, education, experience, projects, skills }) => {
                 <p>{general.email}</p>
               </span>
             )}
-            {general.phoneNumber && (
-              <div className="flex gap-1 justify-end">
+
+            <div className="flex gap-1 justify-end">
+              {general.phoneNumber && (
                 <span className="flex gap-1">
                   <p>Mobile:</p>
                   <p>{general.phoneNumber}</p>
-                  
                 </span>
-                <div className='flex items-center gap-1'>
-                  <span>|</span>
-                  {general.linkedin && (
-                    
-                  <Link href={`${general.linkedin}`} target="_blank">
-                    
-                    <FaLinkedin/>
+              )}
+              <div className="flex items-center gap-1">
+                {general.linkedin && (
+                  <Link
+                    href={`${general.linkedin}`}
+                    target="_blank"
+                    className="flex items-center justify-center gap-1"
+                  >
+                    | <FaLinkedin />
                   </Link>
                 )}
                 {general.x && (
                   <Link href={`${general.x}`} target="_blank">
-                    <FaXTwitter/>
+                    <FaXTwitter />
                   </Link>
                 )}
                 {general.github && (
                   <Link href={`${general.github}`} target="_blank">
-                    <FaGithub/>
+                    <FaGithub />
                   </Link>
                 )}
-                </div>
-                
               </div>
-            )}
+            </div>
           </div>
         </div>
       )}
@@ -68,9 +69,9 @@ const Cv = ({ general, education, experience, projects, skills }) => {
           {general.about}
         </div>
       )}
-      
+
       {/* Education */}
-      {education.length > 0 && (
+      {education && (
         <div className="border-b pb-1 md:pb-2">
           <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[14px] lg:text-[16px] text-center">
             Education
@@ -83,7 +84,7 @@ const Cv = ({ general, education, experience, projects, skills }) => {
                 <span className="font-semibold">
                   {to &&
                     (calculateDate(to) ? (
-                      <p>{to.getUTCFullYear()}</p>
+                      <p>{to.split('-')[0]}</p>
                     ) : (
                       <p>Ongoing</p>
                     ))}
@@ -103,10 +104,10 @@ const Cv = ({ general, education, experience, projects, skills }) => {
             Skills
           </h2>
 
-          {skills.map(({ id, category, skills}) => (
+          {skills.map(({ id, category, skills }) => (
             <div key={id} className="md:space-y-0.5">
-              <div className='flex'>
-                <p className='font-bold'>{category}</p>
+              <div className="flex">
+                <p className="font-bold">{category}</p>
                 <p>: {skills}</p>
               </div>
             </div>
@@ -114,7 +115,7 @@ const Cv = ({ general, education, experience, projects, skills }) => {
         </div>
       )}
       {/* Projects */}
-      {projects.length > 0 && (
+      {projects && (
         <div className="border-b pb-1 md:pb-2">
           <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[14px] lg:text-[16px] text-center">
             Projects
@@ -125,20 +126,29 @@ const Cv = ({ general, education, experience, projects, skills }) => {
                 <div className="flex gap-1">
                   <p>{name}</p>
                   {live && (
-                    <Link href={live} target="_blank" className='flex justify-center items-center gap-1'>
-                      |<FaAngleRight/> Live{' '}
+                    <Link
+                      href={live}
+                      target="_blank"
+                      className="flex justify-center items-center gap-1"
+                    >
+                      |<FaAngleRight /> Live{' '}
                     </Link>
                   )}
                   {github && (
-                    <Link href={github} target="_blank" className='flex items-center justify-center gap-1'>
-                      | <FaGithub/>Github
+                    <Link
+                      href={github}
+                      target="_blank"
+                      className="flex items-center justify-center gap-1"
+                    >
+                      | <FaGithub />
+                      Github
                     </Link>
                   )}
                 </div>
                 <div>
                   {date &&
                     (calculateDate(date) ? (
-                      <p>{date.getUTCFullYear()}</p>
+                      <p>{date.split('-')[0]}</p>
                     ) : (
                       <p>Ongoing</p>
                     ))}
@@ -152,7 +162,7 @@ const Cv = ({ general, education, experience, projects, skills }) => {
         </div>
       )}
       {/* Experience */}
-      {experience.length > 0 && (
+      {experience && (
         <div className="pb-1 md:pb-2">
           <h2 className="font-bold py-1 md:py-3 uppercase text-[10px] md:text-[14px] lg:text-[16px] text-center">
             Experience
@@ -165,10 +175,10 @@ const Cv = ({ general, education, experience, projects, skills }) => {
                   {position && <p>| {position}</p>}
                 </div>
                 <div className="flex gap-1">
-                  {from && <p>{from.getUTCFullYear()} -</p>}
+                  {from && <p>{from.split('-')[0]} -</p>}
                   {to &&
                     (calculateDate(to) ? (
-                      <p>{to.getUTCFullYear()}</p>
+                      <p>{to.split('-')[0]}</p>
                     ) : (
                       <p>Present</p>
                     ))}

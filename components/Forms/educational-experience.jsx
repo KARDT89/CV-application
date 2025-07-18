@@ -4,8 +4,15 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Calendar22 } from '@/components/ui/date-picker';
 import { Check, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 
-const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
+const EducationalExperience = ({
+  data,
+  setData,
+  value: edu,
+  handleDelete,
+  handleSave,
+}) => {
   const updateField = (id, field, value) => {
     setData(
       data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
@@ -13,6 +20,11 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
   };
   return (
     <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        toast('Successfully Saved');
+        // handleSave();
+      }}
       action=""
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -48,7 +60,7 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
           label={'To'}
           value={edu.to}
           // onChange={(e) => setData({ ...data, to: e.getUTCFullYear() })}
-          onChange={(e) => updateField(edu.id, 'to', e)}
+          onChange={(e) => updateField(edu.id, 'to', e.toJSON())}
         />
       </div>
       <div className="flex justify-between pt-4">
@@ -58,9 +70,8 @@ const EducationalExperience = ({ data, setData, value: edu, handleDelete }) => {
             <Trash2 />
           </Button>
         </span>
-
         <span>
-          <Button>
+          <Button onClick={handleSave}>
             Save
             <Check />
           </Button>

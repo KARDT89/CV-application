@@ -5,8 +5,15 @@ import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { Check, Trash2 } from 'lucide-react';
 import { Calendar22 } from '../ui/date-picker';
+import { toast } from 'sonner';
 
-const Projects = ({ data, setData, value: project, handleDelete }) => {
+const Projects = ({
+  data,
+  setData,
+  value: project,
+  handleDelete,
+  handleSave,
+}) => {
   const updateField = (id, field, value) => {
     setData(
       data.map((item) => (item.id === id ? { ...item, [field]: value } : item)),
@@ -14,6 +21,11 @@ const Projects = ({ data, setData, value: project, handleDelete }) => {
   };
   return (
     <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        toast('Successfully Saved');
+        // handleSave();
+      }}
       action=""
       className="flex flex-col bg-card w-full p-6 gap-3 border border-foreground/20 rounded-l"
     >
@@ -57,7 +69,7 @@ const Projects = ({ data, setData, value: project, handleDelete }) => {
         label={'Completion Date'}
         value={project.date}
         // onChange={(e) => setData({ ...data, from: e.getUTCFullYear() })}
-        onChange={(e) => updateField(project.id, 'date', e)}
+        onChange={(e) => updateField(project.id, 'date', e.toJSON())}
       />
       <div className="flex justify-between pt-4">
         <span>
@@ -67,7 +79,7 @@ const Projects = ({ data, setData, value: project, handleDelete }) => {
           </Button>
         </span>
         <span>
-          <Button>
+          <Button onClick={handleSave}>
             Save
             <Check />
           </Button>
